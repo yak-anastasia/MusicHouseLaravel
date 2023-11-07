@@ -1,0 +1,18 @@
+@font-face {
+  font-family: FallingSky;
+  src: url(../fonts/FallingSkyOblique-n5XV.otf);
+}
+header {
+  font-size: 18px;
+}
+body {
+  background-color: #101035;
+  color: white;
+  font-family: FallingSky, sans-serif;
+}
+.description {
+  color: white;
+  font-size: 20px;
+  text-align: justify;
+  text-indent: 45px;
+}
