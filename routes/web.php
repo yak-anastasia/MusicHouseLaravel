@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SqlController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +38,5 @@ Route::get('/registration', function () {
 })->name('registration');
 
 Route::get('/sql', [SqlController::class, 'index']);
+
+Route::get('/products',[ProductController::class, 'index']);
