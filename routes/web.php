@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SqlController;
 use App\Http\Controllers\ProductController;
 
 /*
@@ -24,19 +23,19 @@ Route::get('/authorization', function () {
 Route::get('/basket', function () {
     return view('basket');
 })->name('basket');
-Route::get('/catalog', function () {
-    return view('catalog');
-})->name('catalog');
 Route::get('/contacts', function () {
     return view('contacts');
 })->name('contacts');
-Route::get('/product', function () {
-    return view('product');
-})->name('product');
 Route::get('/registration', function () {
     return view('registration');
 })->name('registration');
+Route::get('/catalog', function() {
+    return view('products/index');
+})->name('catalog');
+Route::get('/show', function() {
+    return view('products/show');
+})->name('show');
 
-Route::get('/sql', [SqlController::class, 'index']);
+Route::resource('products', ProductController::class);
 
-Route::get('/products',[ProductController::class, 'index']);
+// Route::get('/products',[ProductController::class, 'index']);

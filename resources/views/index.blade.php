@@ -1,6 +1,5 @@
 @extends('layout')
 @section('content')
-  <div class="container">
     <div class="row text-center mt-4">
       <div class="col-12">
         <h1>Music House</h1>
@@ -25,31 +24,11 @@
     <div class="row mt-4 mb-5">
       <div class="col-12">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-          </div>
           <div class="carousel-inner">
-            <div class="carousel-item active" style="height: 750px">
+            <div class="carousel-item" style="height: 750px">
               <img src="{{asset('img/DSC_0404.jpg')}}" class="d-block w-100" alt="Slide image">
               <div class="carousel-caption d-none d-md-block">
                 <h5>First slide label</h5>
-                <p>Some representative placeholder content for the first slide.</p>
-              </div>
-            </div>
-            <div class="carousel-item" style="height: 750px">
-              <img src="{{asset('img/img_20201110_132647-1-scaled.jpg')}}" class="d-block w-100" alt="Slide image">
-              <div class="carousel-caption d-none d-md-block">
-                <h5>Second slide label</h5>
-                <p>Some representative placeholder content for the first slide.</p>
-              </div>
-            </div>
-            <div class="carousel-item" style="height: 750px">
-              <img src="{{asset('img/1688849888830548_f020.jpg')}}" class="d-block w-100" alt="Slide image">
-              <div class="carousel-caption d-none d-md-block">
-                <h5>Third slide label</h5>
-                <p>Some representative placeholder content for the first slide.</p>
               </div>
             </div>
           </div>
@@ -64,5 +43,4 @@
         </div>
       </div>
     </div>
-  </div>
 @endsection

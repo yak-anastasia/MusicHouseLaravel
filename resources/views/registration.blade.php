@@ -1,6 +1,5 @@
 @extends('layout')
 @section('content')
-  <div class="container">
     <div class="row mt-5 justify-content-center">
       <div class="col-6 text-center">
           <h1 class="text-center mb-4">Регистрация</h1>
@@ -41,5 +40,4 @@
           </form>
       </div>
     </div>
-  </div>
 @endsection
