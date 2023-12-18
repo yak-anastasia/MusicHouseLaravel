@@ -11,25 +11,25 @@ class Product extends Model
 {
     use HasFactory;
 
-    public function categories(): BelongsTo
+    public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
 
     public function orders(): BelongsToMany
     {
-        return $this->belongsToMany(Order::class);
+        return $this->belongsToMany(Order::class)->withPivot('qty');
     }
 
     protected $fillable = [
+        'category_id',
         'title',
-        'description',
         'img_path',
         'price',
-        'model',
+        'qty',
         'country',
         'year',
-        'qty',
-        'category_id',
+        'model',
+        'description',
     ];
 }

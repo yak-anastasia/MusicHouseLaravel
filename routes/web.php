@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CarouselController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,28 +17,32 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
-Route::get('/authorization', function () {
+Route::get('/authorization', function() {
     return view('authorization');
 })->name('authorization');
-Route::get('/basket', function () {
+Route::get('/basket', function() {
     return view('basket');
 })->name('basket');
-Route::get('/contacts', function () {
+Route::get('/contacts', function() {
     return view('contacts');
 })->name('contacts');
-Route::get('/registration', function () {
-    return view('registration');
-})->name('registration');
-Route::get('/catalog', function() {
-    return view('products/index');
-})->name('catalog');
-Route::get('/show', function() {
-    return view('products/show');
-})->name('show');
+Route::get('/orders', function() {
+    return view('orders');
+})->name('orders');
+Route::get('/admin', function(){
+    return view('admin');
+})->name('admin');
+
+Route::get('/', [CarouselController::class, 'index'])->name('index');
 
 Route::resource('products', ProductController::class);
 
-// Route::get('/products',[ProductController::class, 'index']);
+Route::post('/products/filter', [ProductController::class, 'filter'])->name('products.filter');
+
+Route::resource('categories', CategoryController::class);
+
+Route::get('/registration', [AuthController::class, 'regForm'])->name('regForm');
+Route::post('/reg', [AuthController::class, 'register'])->name('register');
+Route::get('/login', [AuthController::class, 'loginForm'])->name('loginForm');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

@@ -1,18 +1,13 @@
 @extends('layout')
 @section('content')
   <div class="row">
-    <div class="col-12 text-center mt-3">
-      <h1>Продукты</h1>
-    </div>
-  </div>
-  <div class="row">
     <div class="col-12 text-center mt-4">
-      <h1>Бас-гитара Vintage VJ75MBK</h1>
+      <h1>{{$product->title}}</h1>
     </div>
   </div>
   <div class="row mt-4 mb-5 text-center">
     <div class="col-12">
-      <img class="w-25 rounded" src="{{asset('img/Vintage_bas-guitar.jpg')}}">
+      <img class="w-25 rounded" src="{{asset($product->img_path)}}">
     </div>
     <div class="row mt-4 mx-auto">
       <div class="col-12">
@@ -26,19 +21,19 @@
         <tbody>
           <tr>
             <th>Категория</th>
-            <td>Струнные</td>
+            <td>{{$product->category->title}}</td>
           </tr>
           <tr>
             <th>Год выпуска</th>
-            <td>2021</td>
+            <td>{{$product->year}}</td>
           </tr>
           <tr>
             <th>Модель</th>
-            <td>Vintage VJ75MBK</td>
+            <td>{{$product->model}}</td>
           </tr>
           <tr>
             <th>Цена</th>
-            <td>29 990 р.</td>
+            <td>{{$product->price}}</td>
           </tr>
         </tbody>
       </table>

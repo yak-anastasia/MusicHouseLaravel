@@ -14,7 +14,8 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::where('qty','>',0)->get();
-        return view('products.index', ['products'=>$products]);
+        $categories = Category::all();
+        return view('products.index', ['products'=>$products, 'categories'=>$categories]);
     }
 
     /**
@@ -108,5 +109,17 @@ class ProductController extends Controller
         $product = Product::find($product->id);
         $product->delete();
         return redirect()->route('products.index');
+    }
+
+    // Фильтрация и сортировка
+    public function filter(Request $request)
+    {
+        if($request->filter == 'all') {
+            $products = Product::where('qty', '>', 0)->orderBy($request->sort)->get();
+        } else {
+            $products = Product::where('qty', '>', 0)->where('category_id', $request->filter)->orderBy($request->sort)->get();
+        }
+        $categories = Category::all();
+        return view('products.index',['categories'=>$categories, 'products'=>$products]);
     }
 }

@@ -21,16 +21,19 @@
            для того, чтобы клиенты могли развивать свой талант и наслаждаться звуком музыки.</p>
       </div>
     </div>
-    <div class="row mt-4 mb-5">
+    {{-- Слайдер --}}
+    <div class="row mx-auto mt-4 mb-5">
       <div class="col-12">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item" style="height: 750px">
-              <img src="{{asset('img/DSC_0404.jpg')}}" class="d-block w-100" alt="Slide image">
-              <div class="carousel-caption d-none d-md-block">
-                <h5>First slide label</h5>
-              </div>
-            </div>
+          <div class="carousel-inner w-50 mx-auto">
+            @foreach ($products as $product)
+                <div class="carousel-item active">
+                <img src="{{$product->img_path}}" class="d-block w-100" alt="Slide image">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5 class="text-primary">{{$product->title}}</h5>
+                </div>
+                </div>
+            @endforeach
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

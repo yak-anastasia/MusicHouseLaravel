@@ -1,9 +1,10 @@
 @extends('layout')
 @section('content')
     <div class="row mt-5 justify-content-center">
-        <div class="col-6 text-center">
-            <form method="POST" action="{{route('products.store')}}" enctype="multipart/form-data" class="mb-5">
+        <div class="col-12 text-center">
+            <form method="POST" action="{{route('products.update',$product)}}" class="mb-5">
                @csrf
+               @method('PUT')
                 <div class="input-group mb-4">
                     <label class="form-label me-4" for="title">Название товара</label>
                     <input id="title" class="form-control rounded" name="title" type="text" value="{{$product->title}}" required>
@@ -34,7 +35,7 @@
                 </div>
                 <div class="input-group mb-4">
                     <label for="img" class="form-label pe-4">Изображение</label>
-                    <input type="file" class="form-control" id="img" name="img" value="{{$product->img_path}}" required>
+                    <input type="file" class="form-control" id="img" name="img" value="{{$product->img_path}}">
                 </div>
                 <div class="input-group mb-4">
                     <label for="category_id" class="form-label pe-4">Категория</label>

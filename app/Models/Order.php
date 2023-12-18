@@ -11,19 +11,20 @@ class Order extends Model
 {
     use HasFactory;
 
-    public function users(): BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
     public function products(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Product::class)->withPivot('qty');
     }
 
     protected $fillable = [
+        'user_id',
+        'sum',
         'status',
         'comment',
-        'sum',
     ];
 }
