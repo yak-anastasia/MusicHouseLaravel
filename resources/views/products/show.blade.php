@@ -24,6 +24,10 @@
             <td>{{$product->category->title}}</td>
           </tr>
           <tr>
+            <th>Описание</th>
+            <td>{{$product->description}}</td>
+          </tr>
+          <tr>
             <th>Год выпуска</th>
             <td>{{$product->year}}</td>
           </tr>
@@ -33,7 +37,7 @@
           </tr>
           <tr>
             <th>Цена</th>
-            <td>{{$product->price}}</td>
+            <td>{{$product->price}} ₽</td>
           </tr>
         </tbody>
       </table>

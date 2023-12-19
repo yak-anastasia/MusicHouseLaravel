@@ -5,12 +5,13 @@
       <h1>Наши товары</h1>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12">
-      <a href="{{route('products.create')}}" class="btn btn-success my-3">Добавить новый товар</a>
+  @if (Auth::check() && Auth::user()->is_admin)
+    <div class="row">
+        <div class="col-12">
+        <a href="{{route('products.create')}}" class="btn btn-success my-3">Добавить новый товар</a>
+        </div>
     </div>
-  </div>
-
+  @endif
   <div class="row mt-4 mb-3">
       <div class="col-12 d-flex justify-content-center">
         <form action="{{route('products.filter')}}" method="POST" class="d-flex flex-wrap">
@@ -45,16 +46,20 @@
             <h5 class="card-title">{{$product->title}}</h5>
             <p class="card-text">{{$product->model}}</p>
             <p class="card-text mt-2">{{$product->price}} ₽</p>
-            <form action="{{route('products.destroy', $product)}}" method="post">
-                @csrf
-                @method('DELETE')
-                <a href="{{route('products.edit', $product)}}" class="btn btn-success">Изменить</a>
-                <button type="submit" class="btn btn-danger ms-4 w-50">Удалить</button>
-            </form>
+            @if (Auth::check() && Auth::user()->is_admin)
+                <form action="{{route('products.destroy', $product)}}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <a href="{{route('products.edit', $product)}}" class="btn btn-success">Изменить</a>
+                    <button type="submit" class="btn btn-danger ms-4 w-50">Удалить</button>
+                </form>
+            @endif
         </div>
         <div class="card-footer text-center d-flex justify-content-between">
           <a href="{{route('products.show', $product)}}" class="btn btn-success">Подробнее</a>
-          <button type="button" class="btn btn-danger w-50">В корзину</button>
+          @if (Auth::check() && !Auth::user()->is_admin)
+            <button type="button" class="btn btn-danger w-50">В корзину</button>
+          @endif
         </div>
       </div>
     </div>

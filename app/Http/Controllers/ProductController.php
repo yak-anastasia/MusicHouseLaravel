@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin')->except(['index', 'show', 'filter']);
+    }
     /**
      * Display a listing of the resource.
      */
@@ -88,6 +92,7 @@ class ProductController extends Controller
 
         $product = Product::find($product->id);
         $product->title = $request->title;
+        $product->description = $request->description;
         $product->model = $request->model;
         $product->country = $request->country;
         $product->price = $request->price;

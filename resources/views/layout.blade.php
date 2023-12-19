@@ -24,32 +24,42 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('products.index')}}">Каталог</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('categories.index')}}">Категории</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('orders')}}">Заказы</a>
-                        </li>
+                        @if (Auth::check() && Auth::user()->is_admin)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('categories.index')}}">Категории</a>
+                            </li>
+                        @endif
+                        @auth
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('orders')}}">Заказы</a>
+                            </li>
+                        @endauth
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('contacts')}}">Контакты</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav mt-2">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('regForm')}}">Регистрация</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('authorization')}}">Вход</a>
-                        </li>
-                        <li class="nav-item mt-1    ">
-                            <form action="{{route('logout')}}" method="post">
-                                @csrf
-                                <button type="submit" class="btn btn-danger">Выход</button>
-                            </form>
-                        </li>
-                        <li class="nav-item ms-2">
-                            <a class="nav-link" href="{{route('basket')}}"><img src="{{asset('img/basket.svg')}}" alt="basket" width="35" height="35"></a>
-                        </li>
+                        @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('regForm')}}">Регистрация</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('authorization')}}">Вход</a>
+                            </li>
+                        @endguest
+                        @auth
+                            <li class="nav-item mt-1">
+                                <form action="{{route('logout')}}" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger">Выход</button>
+                                </form>
+                            </li>
+                        @endauth
+                        @if (Auth::check() && !Auth::user()->is_admin)
+                            <li class="nav-item ms-2">
+                                <a class="nav-link" href="{{route('cart')}}"><img src="{{asset('img/basket.svg')}}" alt="cart" width="35" height="35"></a>
+                            </li>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -70,6 +80,7 @@
     <main class="container">
         @yield('content')
     </main>
+
     {{-- <footer class="mt-auto">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container">

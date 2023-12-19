@@ -10,8 +10,8 @@
           <input id="name" class="form-control rounded" name="name" value="{{old('name')}}" type="text" placeholder="Введите имя" required>
         </div>
         <div class="input-group mb-4">
-          <label class="form-label me-4" for="lastname">Фамилия:</label>
-          <input id="lastname" class="form-control rounded" name="lastname" value="{{old('lastname')}}" type="text" placeholder="Введите фамилию" required>
+          <label class="form-label me-4" for="surname">Фамилия:</label>
+          <input id="surname" class="form-control rounded" name="surname" value="{{old('surname')}}" type="text" placeholder="Введите фамилию" required>
         </div>
         <div class="input-group mb-4">
           <label class="form-label me-4" for="patronymic">Отчество:</label>
@@ -33,10 +33,10 @@
           <label class="form-label me-4" for="password_confirmation">Подтверждение пароля:</label>
           <input id="password_confirmation" class="form-control rounded" name="password_confirmation" type="password" placeholder="Подтвердите пароль" required>
         </div>
-        <div class="input-group mb-4">
+        {{-- <div class="input-group mb-4">
           <input id="agree" class="form-check-input p-2 rounded" name="agree" type="checkbox">
           <label class="form-check-label ms-3" for="agree">Даю согласие на обработку персональных данных</label>
-        </div>
+        </div> --}}
         @if ($errors->any())
           <div class="alert alert-danger">
             <ul>

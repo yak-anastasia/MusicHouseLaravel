@@ -2,7 +2,7 @@
 @section('content')
     <div class="row mt-5 justify-content-center">
         <div class="col-12 text-center">
-            <form method="POST" action="{{route('products.update',$product)}}" class="mb-5">
+            <form method="POST" action="{{route('products.update',$product)}}" class="mb-5" enctype="multipart/form-data">
                @csrf
                @method('PUT')
                 <div class="input-group mb-4">
