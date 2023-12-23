@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-  <link rel="shortcut icon" href="{{ asset('img/Logo.svg') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+  <link rel="stylesheet" href="{{asset('css/style.css')}}">
+  <link rel="shortcut icon" href="{{asset('img/Logo.svg')}}" type="image/x-icon">
   <title>Админ панель</title>
 </head>
 <body>
@@ -25,7 +25,7 @@
               <a href="{{route('categories.index')}}" class="nav-link">Категории</a>
             </li>
             <li class="nav-item">
-              <a href="{{route('orders')}}" class="nav-link">Заказы</a>
+              <a href="{{route('orders.index')}}" class="nav-link">Заказы</a>
             </li>
             <li class="nav-item mt-1">
                 <form action="{{route('logout')}}" method="post">

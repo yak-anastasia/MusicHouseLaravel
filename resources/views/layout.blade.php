@@ -8,7 +8,7 @@
   <link rel="shortcut icon" href="{{asset('img/Logo.svg')}}" type="image/x-icon">
   <title>Music House</title>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container">
@@ -31,7 +31,7 @@
                         @endif
                         @auth
                             <li class="nav-item">
-                                <a class="nav-link" href="{{route('orders')}}">Заказы</a>
+                                <a class="nav-link" href="{{route('orders.index')}}">Заказы</a>
                             </li>
                         @endauth
                         <li class="nav-item">
@@ -57,7 +57,7 @@
                         @endauth
                         @if (Auth::check() && !Auth::user()->is_admin)
                             <li class="nav-item ms-2">
-                                <a class="nav-link" href="{{route('cart')}}"><img src="{{asset('img/basket.svg')}}" alt="cart" width="35" height="35"></a>
+                                <a class="nav-link" href="{{route('cart.index')}}"><img src="{{asset('img/basket.svg')}}" alt="cart" width="35" height="35"></a>
                             </li>
                         @endif
                     </ul>
@@ -77,27 +77,22 @@
         </div>
     @endif
 
-    <main class="container">
+    <main class="container mb-5">
         @yield('content')
     </main>
 
-    {{-- <footer class="mt-auto">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container">
-                <ul class="navbar-nav me-auto pt-3 mx-auto mt-2 mb-lg-0">
-                    <li class="nav-item">
-
-                    </li>
-                    <li class="nav-item">
-
-                    </li>
-                    <li class="nav-item">
-
-                    </li>
-                </ul>
-            </div>
+    <footer class="mt-auto">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-body-tertiary">
+          <div class="container">
+            <ul class="navbar-nav me-auto pt-3 pb-2 mx-auto mt-2 mt-lg-0">
+              <li class="nav-item">
+                <p class="text-dark">©️ 2023</p>
+              </li>
+            </ul>
+          </div>
+          </div>
         </nav>
-    </footer> --}}
+    </footer>
     <script src="{{asset('js/code.jquery.com_jquery-3.7.1.min.js')}}"></script>
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
 </body>

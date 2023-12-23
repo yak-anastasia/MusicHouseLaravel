@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class OrderController extends Controller
 {
@@ -12,7 +14,13 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        if(Auth::user()->is_admin) {
+            $orders = Order::whereNot('status', 'В корзине')->get();
+        } else {
+            $orders = Order::whereNot('status', 'В корзине')->where('user_id', Auth::user()->id)->get();
+        }
+
+        return view('orders.index', ['orders'=>$orders]);
     }
 
     /**
@@ -28,7 +36,20 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(Hash::check($request->password, Auth::user()->password)) {
+            $order = Auth::user()->orders->firstWhere('status', 'В корзине');
+            $order->status = 'Новый';
+            $order->save();
+
+            $order = new Order;
+            $order->user_id = Auth::user()->id;
+            $order->status = 'В корзине';
+            $order->save();
+
+            return redirect('/orders')->with('info', 'Заказ отправлен');
+        } else {
+            return redirect()->back()->with('info', 'Пароль неверный');
+        }
     }
 
     /**
@@ -52,7 +73,10 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        $order = Order::find($order->id);
+        $order->status = $request->status;
+        $order->save();
+        return back()->with('info', 'Статус обновлен');
     }
 
     /**
@@ -60,6 +84,9 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        $order = Order::find($order->id);
+        $order->delete();
+
+        return back()->with('info', 'Заказ удален');
     }
 }

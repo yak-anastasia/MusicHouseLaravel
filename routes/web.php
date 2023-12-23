@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CarouselController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,12 +25,12 @@ Route::get('/authorization', function() {
 Route::get('/contacts', function() {
     return view('contacts');
 })->name('contacts');
-Route::get('/orders', function() {
-    return view('orders');
-})->name('orders');
-Route::get('/cart', function () {
-    return view('cart');
-})->name('cart');
+// Route::get('/orders', function() {
+//     return view('orders');
+// })->name('orders');
+// Route::get('/cart', function () {
+//     return view('cart');
+// })->name('cart');
 Route::get('/admin', function(){
     return view('admin');
 })->name('admin')->middleware('admin');
@@ -50,5 +52,10 @@ Route::middleware('guest')->group(function() {
 
 Route::middleware('auth')->group(function() {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::get('/cart/add/{product_id}', [CartController::class, 'store'])->name('cart.store');
+    Route::post('/cart/change/{product_id}', [CartController::class, 'change'])->name(('cart.change'));
+    Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
+    Route::resource('orders', OrderController::class);
 });
+

@@ -33,10 +33,10 @@
           <label class="form-label me-4" for="password_confirmation">Подтверждение пароля:</label>
           <input id="password_confirmation" class="form-control rounded" name="password_confirmation" type="password" placeholder="Подтвердите пароль" required>
         </div>
-        {{-- <div class="input-group mb-4">
+        <div class="input-group mb-4">
           <input id="agree" class="form-check-input p-2 rounded" name="agree" type="checkbox">
           <label class="form-check-label ms-3" for="agree">Даю согласие на обработку персональных данных</label>
-        </div> --}}
+        </div>
         @if ($errors->any())
           <div class="alert alert-danger">
             <ul>

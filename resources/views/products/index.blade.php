@@ -58,7 +58,7 @@
         <div class="card-footer text-center d-flex justify-content-between">
           <a href="{{route('products.show', $product)}}" class="btn btn-success">Подробнее</a>
           @if (Auth::check() && !Auth::user()->is_admin)
-            <button type="button" class="btn btn-danger w-50">В корзину</button>
+            <a href="{{route('cart.store', ['product_id'=>$product->id])}}" class="btn btn-danger w-50">В корзину</a>
           @endif
         </div>
       </div>
